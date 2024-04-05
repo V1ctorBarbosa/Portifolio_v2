@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//React
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+//Styles
+import { Container } from "./GlobalStyles";
+import { colors } from "./styles/colors";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+
+import { useTheme } from "./context/context";
+import { ThemeProvider } from "./context/context";
+
+//Components
+import BackgroundCircle from "./components/BackgroundCircle/backgroundCircle";
+
+//styles
+import { GlobalStyle } from "./GlobalStyles";
+
+//Sections
+import Header from "./sections/header/header";
+import Navbar from "./components/Navbar/nav";
+import Home from "./sections/home/home";
+import Experience from "./sections/experience/experience";
+import Techs from "./sections/techs/techs";
+import About from "./sections/about/about";
+import Contact from "./sections/contact/contact";
+import Footer from "./sections/footer/footer";
+
+const Main: React.FC = (): JSX.Element => {
+  const { theme } = useTheme();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <StyledThemeProvider theme={theme}>
+      <GlobalStyle theme={theme} />
+      <Container>
+        <BackgroundCircle top="0px" left="0px" color={colors.secondaryLight} />
+        <BackgroundCircle
+          bottom="100px"
+          right="250px"
+          color={colors.secondaryLight}
+        />
+        <Header />
+        <Navbar />
+        <Home />
+        <Experience />
+        <Techs />
+        <About />
+        <Contact />
+        <Footer />
+      </Container>
+    </StyledThemeProvider>
+  );
+};
 
-export default App
+export const App: React.FC = () => {
+  const { theme } = useTheme();
+
+  return (
+    <ThemeProvider { ...theme }>
+      <Main />
+    </ThemeProvider>
+  );
+};
