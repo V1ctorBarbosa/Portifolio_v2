@@ -1,6 +1,5 @@
 # Portifólio Pessoal v2
 
-# Portfolio
 My personal portfolio made with React + Typescript + Vite
 
 ![screencapture-localhost-5173-2024-04-05-12_11_47](https://github.com/V1ctorBarbosa/Portifolio_v2/assets/101783823/c93f28e2-7873-4d6a-b4e7-99a00a276295)
